@@ -16,7 +16,9 @@ const server = http.createServer((req, res) => {
     });
   }
   else if (page == '/api') {
+    //if query parameter is car
     if('car' in params){
+      //if query parameter car is 'tesla'
       if(params['car']== 'tesla'){
         res.writeHead(200, {'Content-Type': 'application/json'});
         const objToJson = {
@@ -25,7 +27,8 @@ const server = http.createServer((req, res) => {
           msrp: "$135,990"
         }
         res.end(JSON.stringify(objToJson));
-      }//car == tesla
+      }
+      //if query parameter car is 'jeep'
       else if(params['car'] == 'jeep'){
         res.writeHead(200, {'Content-Type': 'application/json'});
         const objToJson = {
@@ -34,7 +37,8 @@ const server = http.createServer((req, res) => {
           msrp: "$29,995"
         }
         res.end(JSON.stringify(objToJson));
-      }//car == jeep
+      }
+      //if query parameter car is 'porshe'
       else if(params['car'] == 'porshe'){
         res.writeHead(200, {'Content-Type': 'application/json'});
         const objToJson = {
@@ -43,14 +47,15 @@ const server = http.createServer((req, res) => {
           msrp: "$101,200"
         }
         res.end(JSON.stringify(objToJson));
-      }//car == porshe
-    }//student if
+      }
+    }
   }//else if
-  // else if (page == '/css/style.css'){
-  //   fs.readFile('css/style.css', function(err, data) {
-  //     res.write(data);
-  //     res.end();
-  //   });
+  else if (page == '/css/style.css'){
+    fs.readFile('css/style.css', function(err, data) {
+      res.write(data);
+      res.end();
+    });
+  }
   else if (page == '/js/main.js'){
     fs.readFile('js/main.js', function(err, data) {
       res.writeHead(200, {'Content-Type': 'text/javascript'});
