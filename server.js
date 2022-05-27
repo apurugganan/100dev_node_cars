@@ -8,14 +8,14 @@ const server = http.createServer((req, res) => {
   const page = url.parse(req.url).pathname;
   const params = querystring.parse(url.parse(req.url).query);
   console.log(page);
-  if (page == '/') {
+  if (page === '/') {
     fs.readFile('index.html', function(err, data) {
       res.writeHead(200, {'Content-Type': 'text/html'});
       res.write(data);
       res.end();
     });
   }
-  else if (page == '/api') {
+  else if (page === '/api') {
     //if query parameter is car
     if('car' in params){
       //if query parameter car is 'tesla'
@@ -29,7 +29,7 @@ const server = http.createServer((req, res) => {
         res.end(JSON.stringify(objToJson));
       }
       //if query parameter car is 'jeep'
-      else if(params['car'] == 'jeep'){
+      else if(params['car'] === 'jeep'){
         res.writeHead(200, {'Content-Type': 'application/json'});
         const objToJson = {
           name: "2022 Jeep Wrangler",
@@ -39,7 +39,7 @@ const server = http.createServer((req, res) => {
         res.end(JSON.stringify(objToJson));
       }
       //if query parameter car is 'porshe'
-      else if(params['car'] == 'porshe'){
+      else if(params['car'] === 'porshe'){
         res.writeHead(200, {'Content-Type': 'application/json'});
         const objToJson = {
           name: "2022 Porshe 911",
@@ -50,13 +50,13 @@ const server = http.createServer((req, res) => {
       }
     }
   }//else if
-  else if (page == '/css/style.css'){
+  else if (page === '/css/style.css'){
     fs.readFile('css/style.css', function(err, data) {
       res.write(data);
       res.end();
     });
   }
-  else if (page == '/js/main.js'){
+  else if (page === '/js/main.js'){
     fs.readFile('js/main.js', function(err, data) {
       res.writeHead(200, {'Content-Type': 'text/javascript'});
       res.write(data);
