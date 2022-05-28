@@ -2,7 +2,7 @@ document.querySelector('#clickMe').addEventListener('click', makeReq)
 
 async function makeReq(){
 
-  const carName = document.querySelector("#name").value;
+  const carName = document.querySelector("#name").value.toLowerCase().trim();
   const res = await fetch(`/api?car=${carName}`)
   const data = await res.json()
 

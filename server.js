@@ -8,15 +8,17 @@ const server = http.createServer((req, res) => {
   const page = url.parse(req.url).pathname;
   const params = querystring.parse(url.parse(req.url).query);
   console.log(page);
-  if (page == '/') {
+  if (page === '/') {
     fs.readFile('index.html', function(err, data) {
       res.writeHead(200, {'Content-Type': 'text/html'});
       res.write(data);
       res.end();
     });
   }
-  else if (page == '/api') {
+  else if (page === '/api') {
+    //if query parameter is car
     if('car' in params){
+      //if query parameter car is 'tesla'
       if(params['car']== 'tesla'){
         res.writeHead(200, {'Content-Type': 'application/json'});
         const objToJson = {
@@ -25,8 +27,9 @@ const server = http.createServer((req, res) => {
           msrp: "$135,990"
         }
         res.end(JSON.stringify(objToJson));
-      }//car == tesla
-      else if(params['car'] == 'jeep'){
+      }
+      //if query parameter car is 'jeep'
+      else if(params['car'] === 'jeep'){
         res.writeHead(200, {'Content-Type': 'application/json'});
         const objToJson = {
           name: "2022 Jeep Wrangler",
@@ -34,8 +37,9 @@ const server = http.createServer((req, res) => {
           msrp: "$29,995"
         }
         res.end(JSON.stringify(objToJson));
-      }//car == jeep
-      else if(params['car'] == 'porshe'){
+      }
+      //if query parameter car is 'porshe'
+      else if(params['car'] === 'porshe'){
         res.writeHead(200, {'Content-Type': 'application/json'});
         const objToJson = {
           name: "2022 Porshe 911",
@@ -43,15 +47,16 @@ const server = http.createServer((req, res) => {
           msrp: "$101,200"
         }
         res.end(JSON.stringify(objToJson));
-      }//car == porshe
-    }//student if
+      }
+    }
   }//else if
-  // else if (page == '/css/style.css'){
-  //   fs.readFile('css/style.css', function(err, data) {
-  //     res.write(data);
-  //     res.end();
-  //   });
-  else if (page == '/js/main.js'){
+  else if (page === '/css/style.css'){
+    fs.readFile('css/style.css', function(err, data) {
+      res.write(data);
+      res.end();
+    });
+  }
+  else if (page === '/js/main.js'){
     fs.readFile('js/main.js', function(err, data) {
       res.writeHead(200, {'Content-Type': 'text/javascript'});
       res.write(data);
